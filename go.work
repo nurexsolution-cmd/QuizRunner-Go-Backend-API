@@ -1,0 +1,10 @@
+go 1.26.4
+
+use (
+	./auth-service
+	./notification-service
+	./pkg
+	./quiz-service
+	./result-service
+	./user-service
+)
