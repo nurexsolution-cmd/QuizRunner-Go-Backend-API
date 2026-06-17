@@ -125,13 +125,13 @@ services:
           - notification-service.railway.internal
 
   api-gateway:
-    image: nginx:alpine
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
     environment:
       - PORT=80
-    volumes:
-      - ./api-gateway/default.conf.template:/etc/nginx/templates/default.conf.template:ro
     depends_on:
       - auth-service
       - user-service
