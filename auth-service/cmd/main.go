@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pubudulakmal/quiz-backend/auth-service/db"
 	"github.com/pubudulakmal/quiz-backend/auth-service/delivery/http"
 	"github.com/pubudulakmal/quiz-backend/auth-service/domain"
 	"github.com/pubudulakmal/quiz-backend/auth-service/repository"
 	"github.com/pubudulakmal/quiz-backend/auth-service/usecase"
-	"github.com/pubudulakmal/quiz-backend/pkg/db"
 )
 
 func main() {
