@@ -19,6 +19,15 @@ func main() {
 	database.AutoMigrate(&domain.User{})
 
 	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"service": "auth-service",
+			"status":  "ok",
+		})
+	})
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok"})
+	})
 
 	authRepo := repository.NewPostgresAuthRepository(database)
 	authUC := usecase.NewAuthUseCase(authRepo)
