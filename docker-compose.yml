@@ -14,10 +14,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      default:
-        aliases:
-          - db.railway.internal
 
   auth-service:
     build:
@@ -26,7 +22,7 @@ services:
     ports:
       - "8081:8080"
     environment:
-      - DB_HOST=db.railway.internal
+      - DB_HOST=db
       - DB_USER=quiz_user
       - DB_PASSWORD=quiz_password
       - DB_NAME=quiz_db
@@ -35,10 +31,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      default:
-        aliases:
-          - auth-service.railway.internal
 
   user-service:
     build:
@@ -47,7 +39,7 @@ services:
     ports:
       - "8082:8080"
     environment:
-      - DB_HOST=db.railway.internal
+      - DB_HOST=db
       - DB_USER=quiz_user
       - DB_PASSWORD=quiz_password
       - DB_NAME=quiz_db
@@ -56,10 +48,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      default:
-        aliases:
-          - user-service.railway.internal
 
   quiz-service:
     build:
@@ -68,7 +56,7 @@ services:
     ports:
       - "8083:8080"
     environment:
-      - DB_HOST=db.railway.internal
+      - DB_HOST=db
       - DB_USER=quiz_user
       - DB_PASSWORD=quiz_password
       - DB_NAME=quiz_db
@@ -77,10 +65,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      default:
-        aliases:
-          - quiz-service.railway.internal
 
   result-service:
     build:
@@ -89,7 +73,7 @@ services:
     ports:
       - "8084:8080"
     environment:
-      - DB_HOST=db.railway.internal
+      - DB_HOST=db
       - DB_USER=quiz_user
       - DB_PASSWORD=quiz_password
       - DB_NAME=quiz_db
@@ -98,10 +82,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      default:
-        aliases:
-          - result-service.railway.internal
 
   notification-service:
     build:
@@ -110,7 +90,7 @@ services:
     ports:
       - "8085:8080"
     environment:
-      - DB_HOST=db.railway.internal
+      - DB_HOST=db
       - DB_USER=quiz_user
       - DB_PASSWORD=quiz_password
       - DB_NAME=quiz_db
@@ -119,10 +99,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      default:
-        aliases:
-          - notification-service.railway.internal
 
   api-gateway:
     build:
