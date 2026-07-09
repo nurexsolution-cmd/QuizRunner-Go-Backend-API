@@ -5,8 +5,12 @@ WORKDIR /app
 # 1. Copy workspace files first (cache workspace resolution)
 COPY go.work go.work.sum ./
 
-# 2. Copy only go.mod/go.sum for each service + shared pkg — cache dep downloads
+# 2. Copy go.mod/go.sum for ALL services (required by go.work)
+COPY auth-service/go.mod auth-service/go.sum ./auth-service/
+COPY user-service/go.mod user-service/go.sum ./user-service/
 COPY quiz-service/go.mod quiz-service/go.sum ./quiz-service/
+COPY result-service/go.mod result-service/go.sum ./result-service/
+COPY notification-service/go.mod notification-service/go.sum ./notification-service/
 COPY pkg/ ./pkg/
 
 # 3. Download dependencies (cached unless go.mod/go.sum change)
